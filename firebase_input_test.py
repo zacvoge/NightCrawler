@@ -5,7 +5,7 @@ url = 'https://group13-night-crawler-default-rtdb.firebaseio.com'
 fb = firebase.FirebaseApplication('https://group13-night-crawler-default-rtdb.firebaseio.com', None)
 
 
-
+motorSpeedPrevious = fb.get('/users/command/motor_speed/speed', None)
 # Run Continously
 while (True):
 
@@ -14,19 +14,19 @@ while (True):
    servoDirection = fb.get('/users/command/servo/direction', None)
 
    # change both motor's power to 25% power
-   if(motorSpeed == "low"):
+   if(motorSpeed == "low" and motorSpeedPrevious != motorSpeed):
       print("motor speed: 25%")
 
    # change both motor's power to 50% power
-   if(motorSpeed == "medium"):
+   if(motorSpeed == "medium" and motorSpeedPrevious != motorSpeed):
       print("motor speed: 50%")
 
    # change both motor's power to 100% power
-   if(motorSpeed == "high"):
+   if(motorSpeed == "high" and motorSpeedPrevious != motorSpeed):
       print("motor speed: 100%")
 
    # turn all motors clockwise
-   if(motorDirection == "forward"):
+   if(motorDirection == "forward" ):
       print("motor direction: forward")
 
    # turn all motors counter-clockwise
@@ -41,9 +41,9 @@ while (True):
    if(motorDirection == "right"):
       print("motor direction: right")
 
-   # stop movement of all motors
-   if(motorDirection == "stop"):
-      print("stop")
+   # disable for now for readability
+   # if(motorDirection == "stop"):
+   #    print("stop")
 
    if(servoDirection == "left"):
       print("pan left")
@@ -57,7 +57,7 @@ while (True):
    if(servoDirection == "down"):
       print("tilt down")
 
-   # print(motorSpeed)
+   motorSpeedPrevious = motorSpeed
 
 
    sleep(1)
