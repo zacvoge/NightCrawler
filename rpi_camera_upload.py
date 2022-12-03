@@ -28,7 +28,7 @@ db = firebase.database();
 # pwd = '121212'
 
 auth_token = auth.sign_in_with_email_and_password("vidsample4432@gmail.com", "121212")
-path_local = "videos/sample_video_1.mp4"
+path_local = "videos/sample_2.mp4"
 
 # Implementation of FIREBASE STORAGE
 path_on_cloud = 'users/' + auth_token['localId'] + '/' + path_local
